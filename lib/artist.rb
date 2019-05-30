@@ -1,5 +1,5 @@
 class Artist
-  attr_accessor :name
+  attr_accessor :name, :song
 
   @@all = []
 
@@ -24,5 +24,9 @@ class Artist
     created_artist = Artist.new(artist)
     created_artist.save
     created_artist
+  end
+
+  def songs
+    @songs
   end
 end
