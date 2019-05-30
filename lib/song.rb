@@ -18,6 +18,6 @@ class Song
   end
 
   def save
-    Song.new(name).save
+    @@all << self
   end
 end
