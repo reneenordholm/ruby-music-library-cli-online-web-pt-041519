@@ -27,4 +27,8 @@ class Song
     created_song.save #save new instance of song
     created_song #return song
   end
+
+  def artist #returns the artist of the song (song belongs to artist)
+    @artist
+  end
 end
