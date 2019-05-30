@@ -22,8 +22,8 @@ class Song
   end
 
   def self.create(song)
-    created_song = Song.new(song)
-    created_song.save
-    created_song
+    created_song = Song.new(song) #song is identified as variable created_song
+    created_song.save #save new instance of song
+    created_song #return song
   end
 end
