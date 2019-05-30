@@ -30,8 +30,8 @@ class Artist
     @songs
   end
 
-  def add_song(song) #assigns the current artist to the song's 'artist' property (song belongs to artist)
-    #when artist class is called add the current song to the artist's song bank
-
+  def add_song(song_to_add)
+    song_to_add.artist = self unless song_to_add.artist == self #Song is the artist's unless the song is already the artist's
+    @songs << song_to_add unless @songs.include?(song_to_add) #add song the artist's collection unless it is already included in the collection
   end
 end
