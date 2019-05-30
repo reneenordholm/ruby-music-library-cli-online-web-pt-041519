@@ -29,4 +29,9 @@ class Artist
   def songs
     @songs
   end
+
+  def add_song(song) #assigns the current artist to the song's 'artist' property (song belongs to artist)
+    #when artist class is called add the current song to the artist's song bank
+
+  end
 end
