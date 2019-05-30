@@ -8,7 +8,7 @@ class Song
 
   def initialize(name, artist = nil)
     @name = name
-    self.artist = artist
+    self.artist = artist #invokes #artist= instead of simply assigning to an @artist instance variable, ensuring that associations are creted upon initialization
   end
 
   def self.all
@@ -30,11 +30,10 @@ class Song
   end
 
   def artist=(artist)
-    if @artist == nil
-      @artist = artist
-    else
-      @artist = @artist
-    end
+    @artist == nil ? @artist = artist : @artist = @artist
+    #if no variabe given for
+    #assigns artist instance
+
     if self.artist != nil
       @artist.add_song(self)
     end
