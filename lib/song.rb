@@ -30,13 +30,14 @@ class Song
   end
 
   def artist=(artist)
-    @artist == nil ? @artist = artist : @artist = @artist
     #if no variabe given for
     #assigns artist instance
-
-    if self.artist != nil
-      @artist.add_song(self)
-    end
-    @artist
+    #if artist is defined, then..
+    @artist == nil ? @artist = artist : @artist = @artist
+      #so long as artist is not nil, add the song to the artist's collection of songs
+      if self.artist != nil
+        @artist.add_song(self)
+      end
+    @artist #return status of artist
   end
 end
