@@ -2,13 +2,14 @@ require 'pry'
 
 class Song
   attr_accessor :name
-  attr_reader :artist
+  attr_reader :artist, :genre
 
   @@all = []
 
-  def initialize(name, artist = nil)
+  def initialize(name, artist = nil, genre = nil)
     @name = name
     self.artist = artist #invokes #artist= instead of simply assigning to an @artist instance variable, ensuring that associations are creted upon initialization
+    self.genre = genre
   end
 
   def self.all
@@ -39,5 +40,13 @@ class Song
         @artist.add_song(self)
       end
     @artist #return status of artist
+  end
+
+  def genre=(genre)
+    @genre == nil ? @genre = genre : @genre = @genre
+    if self.genre != nil
+        @genre.add_song(self)
+    end
+    @genre
   end
 end
