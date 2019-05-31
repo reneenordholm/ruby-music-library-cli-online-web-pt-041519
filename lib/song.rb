@@ -56,6 +56,8 @@ class Song
   end
 
   def self.find_or_create_by_name(song_name)
-
+    find_by_name(found_song)
+    if song == nil
+      song = Song.new(song_name)
   end
 end
