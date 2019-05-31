@@ -51,13 +51,15 @@ class Song
   end
 
   def self.find_by_name(song_name)
-    found_song = @@all.find { |song| song.name == song_name }
-    found_song
+    found_song = @@all.find { |song| song.name == song_name } #finds a song by song name, sets it as found_song
+    found_song #returns the found song
   end
 
   def self.find_or_create_by_name(song_name)
-    find_by_name(found_song)
-    if song == nil
-      song = Song.new(song_name)
+    if find_by_name(song_name) #if the song is found
+        find_by_name(song_name) #returns song name
+    else
+      self.create(song_name) #if song is not found, creates a new song and returns it
+    end
   end
 end
