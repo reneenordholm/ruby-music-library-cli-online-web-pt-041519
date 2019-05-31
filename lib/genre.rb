@@ -34,4 +34,9 @@ class Genre
     song.genre = self unless song.genre == self
     @songs << song unless @songs.include?(song)
   end
+
+  def artists
+    artists = @songs.map { |song| song.artist } #collects all the genres in the song class
+    artists.uniq #returns collection of genres without duplicating
+  end
 end
