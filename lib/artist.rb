@@ -1,5 +1,9 @@
 class Artist
+<<<<<<< HEAD
   extend Concerns::Findable
+=======
+  extend Findable
+>>>>>>> deb727cdc6abf31238124bc1718a962f80417c4f
   attr_accessor :name
 
   @@all = []
