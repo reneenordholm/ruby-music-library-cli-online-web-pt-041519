@@ -4,4 +4,8 @@ class MusicLibraryController
     object = MusicImporter.new(path)
     object.import
   end
+
+  def call
+
+  end
 end
