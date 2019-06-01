@@ -62,4 +62,24 @@ class Song
       self.create(song_name) #if song is not found, creates a new song and returns it
     end
   end
+
+  def self.new_from_filename(filename)
+    #parse the filename
+    song_name = filename.split(" - ")[1]
+    artist_name = filename.split(" - ")[0]
+    genre_name = filename.split(" - ")[2].chomp(".mp3")
+    #create song and assign artist and genre attribute, & create connections
+    #prevent the creation of duplicate objects: songs, artists, genres
+    #song = self.create(song_name)
+    song = self.find_or_create_by_name(song_name)
+    #song.artist = Artist.create(artist_name)
+    song.artist = Artist.find_or_create_by_name(artist_name)
+    #song.genre = Genre.create(genre_name)
+    song.genre = Genre.find_or_create_by_name(genre_name)
+    song
+  end
+
+  def self.create_from_filename
+
+  end
 end
