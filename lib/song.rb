@@ -7,10 +7,13 @@ class Song
 
   @@all = []
 
+  # Initialize with name
   def initialize(name, artist = nil, genre = nil)
     @name = name
-    self.artist = artist if artist #invokes #artist= instead of simply assigning to an @artist instance variable, ensuring that associations are creted upon initialization
-    self.genre = genre if artist
+    # Set artist and save if object exists
+    self.artist = artist if artist != nil
+    # Set genre and save if object exists
+    self.genre = genre if genre != nil
   end
 
   def self.all
@@ -32,7 +35,7 @@ class Song
   end
 
   def artist=(artist)
-    #if no variabe given for
+    #if no variable given for
     #assigns artist instance
     #if artist is defined, then..
     @artist == nil ? @artist = artist : @artist = @artist
@@ -64,21 +67,47 @@ class Song
   #   end
   # end
 
-  def self.new_from_filename(filename)
-    #parse the filename
-    song_name = filename.split(" - ")[1]
-    artist_name = filename.split(" - ")[0]
-    genre_name = filename.split(" - ")[2].chomp(".mp3")
-    #create song and assign artist and genre attribute, & create connections
-    #prevent the creation of duplicate objects: songs, artists, genres
-    #song = self.create(song_name)
-    song = self.find_or_create_by_name(song_name)
-    #song.artist = Artist.create(artist_name)
-    song.artist = Artist.find_or_create_by_name(artist_name)
-    #song.genre = Genre.create(genre_name)
-    song.genre = Genre.find_or_create_by_name(genre_name)
-    song
+  # Custom class constructor with name, artist, genre that saves instance to @@all
+  def self.create(name, artist = nil, genre = nil)
+    self.new(name, artist, genre).tap(&:save)
   end
+
+  # Parse filename, create new song, associate song with artist and genre, and return new song instance
+  def self.new_from_filename(filename)
+
+    # Separate filename into song name and artist name
+    artist_name, song_name, genre_name = filename.delete_suffix(".mp3").split(" - ")
+
+    # Find or create artist object
+    artist = Artist.find_or_create_by_name(artist_name)
+
+    # Find or create genre object
+    genre = Genre.find_or_create_by_name(genre_name)
+
+    # Create new song instance with artist and genre objects
+    song = self.new(song_name, artist, genre)
+
+    # Return song object
+    return song
+  end
+
+=begin code below does not work
+  # def self.new_from_filename(filename)
+  #   #parse the filename
+  #   song_name = filename.split(" - ")[1]
+  #   artist_name = filename.split(" - ")[0]
+  #   genre_name = filename.split(" - ")[2].chomp(".mp3")
+  #   #create song and assign artist and genre attribute, & create connections
+  #   #prevent the creation of duplicate objects: songs, artists, genres
+  #   #song = self.create(song_name)
+  #   song = self.find_or_create_by_name(song_name)
+  #   #song.artist = Artist.create(artist_name)
+  #   song.artist = Artist.find_or_create_by_name(artist_name)
+  #   #song.genre = Genre.create(genre_name)
+  #   song.genre = Genre.find_or_create_by_name(genre_name)
+  #   song
+  # end
+=end
 
   def self.create_from_filename(filename)
     new_from_filename(filename).tap{ |s| s.save }
