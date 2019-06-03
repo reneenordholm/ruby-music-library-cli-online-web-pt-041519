@@ -36,11 +36,14 @@ class MusicLibraryController
         end
       end
 
-      def list_songs
-        Song.all.sort{ |a, b| a.name <=> b.name }.each.with_index(1) do |s, i|
-          puts "#{i}. #{s.artist.name} - #{s.name} - #{s.genre.name}"
-        end
-      end
+      def sorted_songs
+    Song.all.sort_by { |song| song.name }
+  end
+
+  # Puts list of songs in numbered, alphabetical list
+  def list_songs
+    sorted_songs.each.with_index(1) { |song, index| puts "#{index}. #{song.artist.name} - #{song.name} - #{song.genre.name}" }
+  end
 
 
   end
