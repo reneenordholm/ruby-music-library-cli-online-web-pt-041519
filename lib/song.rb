@@ -8,8 +8,8 @@ class Song
 
   def initialize(name, artist = nil, genre = nil)
     @name = name
-    self.artist = artist #invokes #artist= instead of simply assigning to an @artist instance variable, ensuring that associations are creted upon initialization
-    self.genre = genre
+    self.artist = artist if artist #invokes #artist= instead of simply assigning to an @artist instance variable, ensuring that associations are creted upon initialization
+    self.genre = genre if artist
   end
 
   def self.all
@@ -80,6 +80,6 @@ class Song
   end
 
   def self.create_from_filename(filename)
-    new_from_filename(filename).save
+    new_from_filename(filename).tap{ |s| s.save }
   end
 end

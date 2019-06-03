@@ -38,7 +38,6 @@ class Artist
   end
 
   def genres
-    genres = @songs.map { |song| song.genre } #collects all the genres in the song class
-    genres.uniq #returns collection of genres without duplicating
+    songs.collect {|song| song.genre}.uniq
   end
 end
