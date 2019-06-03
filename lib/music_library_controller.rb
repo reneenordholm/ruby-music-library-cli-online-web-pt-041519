@@ -56,7 +56,7 @@ class MusicLibraryController
     print_short_list(library)
   end
 
-  Puts list of genres in numbered, alphabetical list
+  #Puts list of genres in numbered, alphabetical list
   def list_genres
     # Get all genres, remove duplicates, and sort alphabetically
     library = Genre.all.collect { |genre| genre.name}.uniq.sort
