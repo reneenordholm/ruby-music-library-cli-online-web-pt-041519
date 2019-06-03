@@ -55,49 +55,49 @@ class MusicLibraryController
   # def list_genres
   #   # Get all genres, remove duplicates, and sort alphabetically
   #   library = Genre.all.collect { |genre| genre.name}.uniq.sort
-  # 
+  #
   #   # Puts list with index
   #   print_short_list(library)
   # end
-  # 
+  #
   # # Get artist from user, and puts list of artist's songs if artist exists in library
   # def list_songs_by_artist
   #   # Get artist
   #   puts "Please enter the name of an artist:"
   #   user_input = gets.chomp
-  # 
+  #
   #   # Set artist object from input
   #   artist = Artist.find_by_name(user_input)
-  # 
+  #
   #   # If artist exists, grab songs and output alphabetized by song name
   #   if artist != nil
   #    artist.songs.sort_by { |song| song.name }.each.with_index(1) { |song, index| puts "#{index}. #{song.name} - #{song.genre.name}" }
   #   end
   # end
-  # 
+  #
   # # Get genre from user, and puts list of genre's songs if genre exists in library
   # def list_songs_by_genre
   #   # Get artist
   #   puts "Please enter the name of a genre:"
   #   user_input = gets.chomp
-  # 
+  #
   #   #Set genre object from input
   #   genre = Genre.find_by_name(user_input)
-  # 
+  #
   #   # If genre exists, grab songs and output alphabetized by song artist name
   #   if genre != nil
   #     genre.songs.sort_by { |song| song.name }.each.with_index(1) { |song, index| puts "#{index}. #{song.artist.name} - #{song.name}" }
   #   end
   # end
-  # 
+  #
   # # Play song that matches user input
   # def play_song
   #   puts "Which song number would you like to play?"
   #   user_input = gets.chomp
-  # 
+  #
   #   # Convert to integer and remove 1 to match array index
   #   song_number = (user_input.to_i) - 1
-  # 
+  #
   #   # If input is within library, play song
   #   if (song_number >= 0) && (song_number < sorted_songs.length) && (sorted_songs[song_number])
   #     song = sorted_songs[song_number]
