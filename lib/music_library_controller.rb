@@ -95,6 +95,11 @@ class MusicLibraryController
     end
   end
 
+  # Heper method: Return sorted array of songs by song name
+  def sorted_songs
+    Song.all.sort_by { |song| song.name }
+  end
+
   # Play song that matches user input
   def play_song
     puts "Which song number would you like to play?"
