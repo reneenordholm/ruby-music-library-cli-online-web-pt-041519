@@ -42,6 +42,11 @@ class MusicLibraryController
     end
   end
 
+  # Helper method: Puts short list of subject with number
+    def print_short_list(library)
+      library.each.with_index(1) { |obj, index| puts "#{index}. #{obj}" }
+    end
+
   # Puts list of artists in numbered, alphabetical list
   def list_artists
     # Get all artists, remove duplicates, and sort alphabetically
@@ -51,7 +56,7 @@ class MusicLibraryController
     print_short_list(library)
   end
 
-  # Puts list of genres in numbered, alphabetical list
+  #Puts list of genres in numbered, alphabetical list
   def list_genres
     # Get all genres, remove duplicates, and sort alphabetically
     library = Genre.all.collect { |genre| genre.name}.uniq.sort
@@ -88,6 +93,11 @@ class MusicLibraryController
     if genre != nil
       genre.songs.sort_by { |song| song.name }.each.with_index(1) { |song, index| puts "#{index}. #{song.artist.name} - #{song.name}" }
     end
+  end
+
+  # Heper method: Return sorted array of songs by song name
+  def sorted_songs
+    Song.all.sort_by { |song| song.name }
   end
 
   # Play song that matches user input
